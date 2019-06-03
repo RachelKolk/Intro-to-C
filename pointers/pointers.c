@@ -42,7 +42,7 @@ char *find_char(char *str, char c)
         str++;          
     }
     if (c == *str) {
-        printf("%s\n", str);
+        // printf("%s\n", str);
         return str;    
     }
     else {
@@ -61,6 +61,17 @@ char *find_char(char *str, char c)
 */
 char *find_string(char *haystack, char *needle)
 {
+    while (*needle != *haystack && *haystack != '\0') {
+        haystack++;
+        printf("%s\n", needle);
+    }
+    if (*needle == *haystack) {
+        printf("%s\n", haystack);
+        return haystack;
+    }
+    else {
+        return NULL; 
+    }
     
 }
 
