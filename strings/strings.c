@@ -9,7 +9,14 @@
 */
 int string_length(char *s)
 {
+   int counter = 0;
+   char s[];
 
+   int i;
+   for (int i = 0; [i] <= [\n]; i++) {
+       counter++;
+   }
+   return 0;
 }
 
 /*
