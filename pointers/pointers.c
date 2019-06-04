@@ -63,7 +63,7 @@ char *find_string(char *haystack, char *needle)
 {
     while (*needle != *haystack && *haystack != '\0') {
         haystack++;
-        printf("%s\n", needle);
+        // printf("%s\n", needle);
     }
     if (*needle == *haystack) {
         printf("%s\n", haystack);
