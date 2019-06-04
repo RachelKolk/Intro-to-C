@@ -24,10 +24,12 @@ int string_length(char *s)
 */
 char *reverse_string(char *rv, char *s)
 {
-    int i = (string_length(s));
-    for (int i; s[i] >= 0; i--)  {
-        rv = rv + *s[i];
+    int count = 0;
+    for (int i = (string_length(s) - 1); i >= 0; i--)  {
+        rv[count] = s[i];
+        count += 1;
     }
+    rv[string_length(s)] = '\0';
     return rv;
 }
 

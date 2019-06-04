@@ -15,7 +15,6 @@
 */
 void string_copy(char *x, char *y)
 {
-    
     while (*y != '\0') {
         *x = *y;
         x++;
@@ -61,18 +60,17 @@ char *find_char(char *str, char c)
 */
 char *find_string(char *haystack, char *needle)
 {
-    while (*needle != *haystack && *haystack != '\0') {
-        haystack++;
-        // printf("%s\n", needle);
+    for (int i = 0; i < strlen(haystack); i++) {
+        if (haystack[i] == needle[0] && haystack[i+1] != '\0') {
+            for (int k = 1; k < strlen(needle); k++) {
+                if (needle[k] != haystack[k + 1]) {
+                    break;
+                }
+            }
+            return &haystack[i];
+        }
     }
-    if (*needle == *haystack) {
-        printf("%s\n", haystack);
-        return haystack;
-    }
-    else {
-        return NULL; 
-    }
-    
+    return NULL; 
 }
 
 #ifndef TESTING

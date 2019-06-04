@@ -12,13 +12,22 @@
 */
 char *string_dup(char *src)
 {
-    char dup = malloc(strlen(src)+1);
+    int len = string_length(src);
+    char *dupl = malloc(len + 1 * sizeof(src));
+      
     while (*src != '\0') {
-        *dup = *src;
+        *dupl = *src;
+        dupl++;
         src++;
-        dup++;
     }
-    return dup;
+    printf("Is this working?");
+    printf("%s\n", dupl);
+    *dupl = '\0';
+    
+    printf("Is this working?");
+    printf("%s\n", dupl);
+    printf("%c\n", *dupl);
+    return dupl;
 }
 
 /*
@@ -29,8 +38,13 @@ char *string_dup(char *src)
     from `src` to `dest`. 
 */
 void mem_copy(void *dest, const void *src, int n)
-{
+{    
+    char *copy = (char *)src;
+    char *destp = (char *)dest;
 
+    for (int i = 0; i < n; i++) {
+       copy[i] = destp[i];
+    } 
 }
 
 /*
@@ -46,6 +60,14 @@ void mem_copy(void *dest, const void *src, int n)
 */
 void *resize_memory(void *ptr, int old_size, int new_size)
 {
+    char *malmemptr = (char *)ptr;
+    void *resize = malloc(new_size * sizeof(malmemptr[0]));
+  
+    mem_copy(resize, malmemptr, new_size * sizeof(malmemptr[0]));
+  
+    free(ptr);
+
+    return resize;
 
 }
 
