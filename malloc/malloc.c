@@ -12,7 +12,14 @@
 */
 char *string_dup(char *src)
 {
-
+    int len = string_length(src);
+    char *dupl = malloc(len + 1 * sizeof(src));
+    printf("%s\n", src); 
+    for (int i = 0; i < len; i++) {
+        *(dupl + i) = *(src);
+        src++;
+    }
+    return dupl;
 }
 
 /*
@@ -23,8 +30,13 @@ char *string_dup(char *src)
     from `src` to `dest`. 
 */
 void mem_copy(void *dest, const void *src, int n)
-{
+{    
+    char *copy = (char *)src;
+    char *destp = (char *)dest;
 
+    for (int i = 0; i < n; i++) {
+       copy[i] = destp[i];
+    } 
 }
 
 /*
@@ -40,8 +52,52 @@ void mem_copy(void *dest, const void *src, int n)
 */
 void *resize_memory(void *ptr, int old_size, int new_size)
 {
-
+        
+   if (new_size == 0)
+   {
+      free(ptr);
+      return NULL;
+   }
+   else if (!ptr)
+   {
+      return malloc(new_size);
+   }
+   else if (new_size <= old_size)
+   {
+      return ptr;
+   }
+   else
+   {
+      if((ptr) && (new_size > old_size)) {
+        void *ptrNew = malloc(new_size);
+        if (ptrNew)
+        {
+            memcpy(ptrNew, ptr, old_size);
+            free(ptr);
+        }
+        return ptrNew;
+      }
+    }
 }
+
+
+
+
+    // char *dest = malloc(new_size * sizeof(malmemptr));
+
+    // for (int i = 0; i < new_size; i++) {
+    //     printf("Current Value: %s\n", malmemptr);
+    //     malmemptr++;
+    // }
+
+    // void *resize = malloc(new_size * sizeof(malmemptr[0]));
+  
+    // mem_copy(resize, malmemptr, new_size * sizeof(malmemptr[0]));
+  
+    
+    // printf("Running tests");
+    // printf("%d\n", *malmemptr);
+    // return resize;
 
 #ifndef TESTING
 int main(void)
