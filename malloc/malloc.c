@@ -53,20 +53,42 @@ void mem_copy(void *dest, const void *src, int n)
 void *resize_memory(void *ptr, int old_size, int new_size)
 {
         
-    char *malmemptr = (char *)ptr;
-    printf("Pre-Resizing: %s\n", malmemptr);
-    printf("Old Size: %d\n", old_size);
-    printf("New Size: %d\n", new_size);
-    *(malmemptr + new_size) = '\0';
+   if (new_size == 0)
+   {
+      free(ptr);
+      return NULL;
+   }
+   else if (!ptr)
+   {
+      return malloc(new_size);
+   }
+   else if (new_size <= old_size)
+   {
+      return ptr;
+   }
+   else
+   {
+      if((ptr) && (new_size > old_size)) {
+        void *ptrNew = malloc(new_size);
+        if (ptrNew)
+        {
+            memcpy(ptrNew, ptr, old_size);
+            free(ptr);
+        }
+        return ptrNew;
+      }
+    }
+}
+
 
 
 
     // char *dest = malloc(new_size * sizeof(malmemptr));
 
-    for (int i = 0; i < new_size; i++) {
-        printf("Current Value: %s\n", malmemptr);
-        malmemptr++;
-    }
+    // for (int i = 0; i < new_size; i++) {
+    //     printf("Current Value: %s\n", malmemptr);
+    //     malmemptr++;
+    // }
 
     // void *resize = malloc(new_size * sizeof(malmemptr[0]));
   
@@ -76,8 +98,6 @@ void *resize_memory(void *ptr, int old_size, int new_size)
     // printf("Running tests");
     // printf("%d\n", *malmemptr);
     // return resize;
-
-}
 
 #ifndef TESTING
 int main(void)
